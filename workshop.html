@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIND 2026 Workshop</title>
+    <style>
+        /* —————————— 基础复位 —————————— */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* —————————— 顶部 Header —————————— */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(#d1e1f0 1px, transparent 1px), #f8faff;
+            background-size: 20px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .header h1 { font-size: 32px; font-weight: 700; color: #222; margin-bottom: 10px; }
+        .header .sub-title { font-size: 20px; color: #555; margin-bottom: 5px; }
+        .header .info { font-size: 18px; color: #444; }
+
+        /* —————————— 主容器 —————————— */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* —————————— Section 标题样式 —————————— */
+        h2.section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #3174b5;
+            margin: 40px 0;
+            font-weight: bold;
+        }
+
+        .content-section h2 {
+            font-size: 24px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+
+        /* —————————— 1. Invited Speakers (卡片布局) —————————— */
+        .speakers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .speaker-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px 25px;
+            flex: 0 1 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .speaker-avatar { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 1px solid #ddd; }
+        .speaker-name { font-size: 22px; color: #3174b5; font-weight: 600; margin-bottom: 12px; }
+        .speaker-affiliation { font-size: 16px; color: #555; margin-bottom: 25px; min-height: 50px; }
+
+        .btn-group { display: flex; gap: 12px; margin-top: auto; }
+        .btn {
+            padding: 7px 18px; border: 1px solid #3174b5; border-radius: 4px;
+            color: #3174b5; text-decoration: none; font-size: 14px; background: #fff; cursor: pointer; transition: 0.2s;
+        }
+        .btn:hover { background-color: #3174b5; color: #fff; }
+
+        /* —————————— 5 & 6. Committee (网格布局，参照新图片) —————————— */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .member-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .member-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .member-name {
+            font-size: 19px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .member-affil {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.3;
+            max-width: 200px;
+        }
+
+        /* —————————— 其他内容样式 —————————— */
+        .content-section p { margin-bottom: 15px; font-size: 16px; color: #444; }
+        .date-label { font-weight: bold; color: #c0392b; margin-right: 8px; }
+        .link { color: #3174b5; text-decoration: none; }
+        .link:hover { text-decoration: underline; }
+        .about-lead { margin-bottom: 18px; }
+
+        .timeline-wrap {
+            margin-top: 10px;
+            padding: 20px 10px 10px;
+        }
+        .timeline-title {
+            text-align: center;
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 26px;
+            color: #2f2f2f;
+            font-weight: 800;
+        }
+        .timeline-title span {
+            color: #2d78c4;
+        }
+        .timeline {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(6, minmax(120px, 1fr));
+            gap: 14px;
+            position: relative;
+            padding-top: 34px;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 46px;
+            left: 3%;
+            right: 3%;
+            height: 3px;
+            background: #9ec5ea;
+        }
+        .timeline li {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline .date {
+            color: #1f7cc8;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .timeline .dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            border: 5px solid #6ea6de;
+            margin: 0 auto 14px;
+        }
+        .timeline .label {
+            font-size: 14px;
+            color: #2f2f2f;
+            line-height: 1.35;
+            min-height: 42px;
+        }
+
+        /* —————————— 弹出面板样式 —————————— */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 999;
+            visibility: hidden; opacity: 0; transition: all 0.3s;
+        }
+        .overlay.active { visibility: visible; opacity: 1; }
+        .side-panel {
+            position: fixed; top: 0; right: -450px; width: 450px; max-width: 90%; height: 100%;
+            background: #fff; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out; display: flex; flex-direction: column;
+        }
+        .side-panel.active { right: 0; }
+        .panel-header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: flex-end; }
+        .close-btn { cursor: pointer; font-size: 14px; color: #666; font-weight: bold; }
+        .panel-content { padding: 30px; overflow-y: auto; flex: 1; }
+        .panel-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
+        .panel-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #3174b5; }
+        .panel-section-title { font-size: 18px; font-weight: bold; margin: 20px 0 10px; border-left: 4px solid #3174b5; padding-left: 10px; }
+        .panel-body-text { font-size: 15px; color: #444; text-align: justify; white-space: pre-line; }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .committee-grid { grid-template-columns: 1fr 1fr; }
+            .side-panel { width: 100%; right: -100%; }
+            .timeline-title { font-size: 34px; }
+            .timeline {
+                grid-template-columns: repeat(3, minmax(110px, 1fr));
+                row-gap: 20px;
+            }
+            .timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Optinformatics for Evolutionary Learning and Optimization: Methodological Advances and Engineering Applications</h1>
+        <p class="sub-title">Held in Conjunction With MIND 2026</p>
+        <p class="info">Nov 13 to 15, 2026, Chongqing</p>
+        <!-- <h1>About MIND 2026</h1>
+        <p class="sub-title">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing</p>
+        <p class="info">MIND 2026 will be held in the beautiful mountain city of Chongqing, China, from November 13-15, 2026!</p> -->
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Invited Speakers</h2>
+        <div class="speakers-grid">
+            <div class="speaker-card">
+                <img src="src/Jose.jpg" alt="Jose A. Lozano" class="speaker-avatar">
+                <div class="speaker-name">Jose A. Lozano</div>
+                <div class="speaker-affiliation">University of the Basque Country (UPV/EHU) and Basque Center for Applied Mathematics (BCAM), Spain</div>
+                <div class="btn-group">
+                    <button class="btn" onclick="openPanel('lozano','bio')">Biography</button>
+                    <button class="btn" onclick="openPanel('lozano','topic')">Topic &amp; Abstract</button>
+                </div>
+            </div>
+            <div class="speaker-card">
+                <img src="https://picsum.photos/seed/jibin-wu/130/130" alt="Yansong Chua" class="speaker-avatar">
+                <div class="speaker-name">Bernhard Sendhoff</div>
+                <div class="speaker-affiliation">China Nanhu Academy of Electronics and Information Technology, China</div>
+                <div class="btn-group">
+                    <button class="btn" onclick="openPanel('chua','bio')">Biography</button>
+                    <button class="btn" onclick="openPanel('chua','topic')">Topic & Abstract</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>1. About the Workshop</h2>
+            <p class="about-lead">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing (MIND) will be held in Chongqing, China, from November 13 to November 15, 2026, serving as a premier forum for showcasing original and groundbreaking research contributions in the fields of Machine Intelligence and Nature-Inspired Computing.</p>
+            <p>The conference aims to bring together researchers, practitioners, and industry experts to share their latest innovations, advancements, and real-world applications. MIND provides a vibrant platform for discussing emerging trends and exploring the transformative potential of machine intelligence combined with computational strategies inspired by nature. Through this convergence, the conference seeks to foster interdisciplinary collaboration and inspire future developments that push the boundaries of these exciting and rapidly evolving research areas.</p>
+            <p>MIND is technically supported by the IEEE Computational Intelligence Society (CIS).</p>
+        </div>
+
+        <div class="content-section">
+            <h2>2. Important Dates</h2>
+            <p><span class="date-label">2026-5-1:</span> Tutorial and Special Session Submission</p>
+            <p><span class="date-label">2026-5-31:</span> Tutorial and Special Session Notification</p>
+            <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
+            <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
+            <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
+            <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
+        </div>
+
+        <div class="content-section">
+            <h2>4. Paper Submission</h2>
+            <p>The Submission Portal for MIND 2026 is open:</p>
+            <p>Submission link: <a href="#" class="link">https://cmt3.research.microsoft.com/IEEEMIND2026</a></p>
+        </div>
+
+        <div class="content-section">
+            <h2>5. Organizing Committee</h2>
+            <div class="committee-grid">
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/jibin-wu/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Jibin Wu</div>
+                    <div class="member-affil">The Hong Kong Polytechnic University</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/yujie-wu/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Yujie Wu</div>
+                    <div class="member-affil">The Hong Kong Polytechnic University</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/qian-zheng/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Qian Zheng</div>
+                    <div class="member-affil">Zhejiang University</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/huajin-tang/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Huajin Tang</div>
+                    <div class="member-affil">Zhejiang University</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>6. Technical Committee (in alphabetical order by the last name)</h2>
+            <div class="committee-grid">
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/siqi-cai/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Siqi Cai</div>
+                    <div class="member-affil">Harbin Institute of Technology, Shenzhen</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/congying-chu/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Congying Chu</div>
+                    <div class="member-affil">Institute of Automation, Chinese Academy of Sciences</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/guozhang-chen/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Guozhang Chen</div>
+                    <div class="member-affil">Peking University</div>
+                </div>
+                <div class="member-item">
+                    <img src="https://picsum.photos/seed/yansong-chua-tc/130/130" alt="" class="member-avatar">
+                    <div class="member-name">Yansong Chua</div>
+                    <div class="member-affil">China Nanhu Academy of Electronics and Information Technology</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Contact Information</h2>
+            <p>Email: <a href="mailto:your-email@example.com" class="link">your-email@example.com</a></p>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePanel()"></div>
+    <div class="side-panel" id="sidePanel">
+        <div class="panel-header">
+            <span class="close-btn" onclick="closePanel()">✕ CLOSE</span>
+        </div>
+        <div class="panel-content" id="panelBody"></div>
+    </div>
+
+    <script>
+        const speakerData = {
+            lozano: {
+                name: "Jose A. Lozano",
+                affil: "University of the Basque Country (UPV/EHU) and Basque Center for Applied Mathematics (BCAM), Spain",
+                img: "src/Jose.jpg",
+                bio: `Jose A. Lozano received his M.Sc. degrees in Mathematics (1991) and Computer Science (1992), and his Ph.D. in Computer Science (1998) (Best Engineering Thesis Award) from the University of the Basque Country (UPV/EHU). He is Full Professor in the Department of Computer Science and Artificial Intelligence at UPV/EHU and leads the Intelligent Systems Group. Since 2019 he has served as the Scientific Director of the Basque Center for Applied Mathematics (BCAM). He was named IEEE Fellow in 2021.
+
+He has published more than 180 ISI-indexed journal articles, several of them highly cited, and has contributed influential books, edited volumes and special issues in machine learning, evolutionary computation and probabilistic modelling.
+
+His research interests include combinatorial optimization, machine learning, probabilistic graphical models, time-series analysis and applications in fields such as medicine, biology and ecology. He has supervised over 30 PhD theses, many recognized with national and international awards, and has received distinctions such as the Basque Country Research Award (2024) and several best paper awards.
+
+Prof. Lozano has held leading roles in the organization of major conferences, including serving as General Chair of IEEE CEC 2017 and ECML-PKDD 2021, and Program Chair of GECCO 2020. He has served on editorial boards of journals such as IEEE Transactions on Evolutionary Computation, IEEE Transactions on Neural Networks and Learning Systems, Evolutionary Computation and ACM Transactions on Evolutionary Learning and Optimization.`,
+                topic: "To be announced",
+                abstract: "Talk title and abstract will be announced closer to the workshop."
+            },
+            chua: {
+                name: "Yansong Chua",
+                affil: "China Nanhu Academy of Electronics and Information Technology, China",
+                img: "https://picsum.photos/seed/yansong-chua/150/150",
+                bio: "Yansong Chua is the Chief Expert of CETC... (更多介绍内容)",
+                topic: "Efficient Neuromorphic Computing Systems",
+                abstract: "In this talk, we will discuss the latest progress in spiking neural networks..."
+            }
+        };
+
+        function openPanel(id, type) {
+            const d = speakerData[id];
+            const panelBody = document.getElementById('panelBody');
+            const title = type === 'bio' ? 'Biography' : 'Topic & Abstract';
+            const content = type === 'bio' ? d.bio : `<strong>${d.topic}</strong><br><br>${d.abstract}`;
+
+            panelBody.innerHTML = `
+                <img src="${d.img}" class="panel-avatar">
+                <div class="panel-name">${d.name}</div>
+                <div class="panel-affil">${d.affil}</div>
+                <div class="panel-section-title">${title}</div>
+                <div class="panel-body-text">${content}</div>
+            `;
+            document.getElementById('sidePanel').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            document.getElementById('sidePanel').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
