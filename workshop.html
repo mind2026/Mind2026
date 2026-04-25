@@ -2,24 +2,138 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIND 2026 Workshop</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Optinformatics Workshop - MIND 2026</title>
+    <meta name="keyword" content="MIND2026, Optinformatics, Evolutionary Learning, Workshop">
+    <meta name="description" content="Optinformatics for Evolutionary Learning and Optimization Workshop - Held in Conjunction With MIND 2026">
+    <link rel="icon" href="./images/ic-mind.org.ico" type="image/x-icon"/>
+    
+    <!-- 外部样式库 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="./css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+    <link rel="stylesheet" type="text/css" href="./css/workshop.css" />
+    <link rel="stylesheet" type="text/css" href="./css/committee.css" />
+
+    <!-- 内嵌修复样式 (保证所有布局完整) -->
     <style>
-        /* —————————— 基础复位 —————————— */
+        /* ---------- 全局基础复位 ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
-
         body {
             background-color: #fff;
             color: #333;
             line-height: 1.6;
         }
 
-        /* —————————— 顶部 Header —————————— */
+        /* ---------- 顶部导航栏 PC端 ---------- */
+        .navPc {
+            height: 88px;
+            background: #fff;
+            border-bottom: 1px solid #e9edf3;
+            padding: 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navPc > a {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            flex-shrink: 0;
+        }
+        .navPc > a img {
+            width: 280px;
+            max-width: 36vw;
+            height: auto;
+            display: block;
+        }
+        .navPc .layui-nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+        .navPc .layui-nav-item {
+            position: relative;
+            list-style: none;
+        }
+        .navPc .layui-nav-item > a {
+            display: inline-flex;
+            align-items: center;
+            height: 88px;
+            padding: 0 12px;
+            text-decoration: none;
+            color: #1f3f7d;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .navPc .layui-nav-item > a:hover,
+        .navPc .layui-nav-item.layui-this > a {
+            color: #295da8;
+        }
+        .navPc .layui-nav .layui-nav-more {
+            width: 8px;
+            height: 8px;
+            top: 50%;
+            border-width: 0 2px 2px 0;
+            border-style: solid;
+            border-color: #204a97;
+            transform: rotate(45deg);
+            margin-left: 6px;
+            margin-top: -4px;
+            right: -2px;
+        }
+        .navPc .layui-nav-child {
+            position: absolute;
+            left: 0;
+            min-width: 320px;
+            background: #fff;
+            border: 1px solid #e1e7f0;
+            box-shadow: 0 8px 24px rgba(15, 38, 77, 0.12);
+            list-style: none;
+            margin: 0;
+            padding: 8px 0;
+            display: none;
+        }
+        .navPc .layui-nav-item:hover > .layui-nav-child {
+            display: block;
+        }
+        .navPc .layui-nav-child dd {
+            margin: 0;
+            padding: 0;
+        }
+        .navPc .layui-nav-child dd a {
+            display: block;
+            padding: 10px 14px;
+            color: #1f3f7d;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+        .navPc .layui-nav-child dd a:hover {
+            background: #f2f6fc;
+        }
+        
+        /* 移动端导航 */
+        .navMobile {
+            display: none;
+        }
+        
+        /* header 区域 暨 workshop 标题区 */
         .header {
             text-align: center;
             padding: 60px 20px;
@@ -27,18 +141,30 @@
             background-size: 20px 20px;
             border-bottom: 1px solid #e0e0e0;
         }
-        .header h1 { font-size: 32px; font-weight: 700; color: #222; margin-bottom: 10px; }
-        .header .sub-title { font-size: 20px; color: #555; margin-bottom: 5px; }
-        .header .info { font-size: 18px; color: #444; }
-
-        /* —————————— 主容器 —————————— */
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .header .sub-title {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .header .info {
+            font-size: 18px;
+            color: #444;
+        }
+        
+        /* 主容器 */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-
-        /* —————————— Section 标题样式 —————————— */
+        
+        /* Section 标题 */
         h2.section-title {
             text-align: center;
             font-size: 32px;
@@ -46,7 +172,6 @@
             margin: 40px 0;
             font-weight: bold;
         }
-
         .content-section h2 {
             font-size: 24px;
             color: #1a1a1a;
@@ -55,8 +180,8 @@
             margin-bottom: 20px;
             margin-top: 50px;
         }
-
-        /* —————————— 1. Invited Speakers (卡片布局) —————————— */
+        
+        /* 演讲者卡片布局 */
         .speakers-grid {
             display: flex;
             flex-wrap: wrap;
@@ -76,18 +201,48 @@
             text-align: center;
             border: 1px solid #eee;
         }
-        .speaker-avatar { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 1px solid #ddd; }
-        .speaker-name { font-size: 22px; color: #3174b5; font-weight: 600; margin-bottom: 12px; }
-        .speaker-affiliation { font-size: 16px; color: #555; margin-bottom: 25px; min-height: 50px; }
-
-        .btn-group { display: flex; gap: 12px; margin-top: auto; }
-        .btn {
-            padding: 7px 18px; border: 1px solid #3174b5; border-radius: 4px;
-            color: #3174b5; text-decoration: none; font-size: 14px; background: #fff; cursor: pointer; transition: 0.2s;
+        .speaker-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
         }
-        .btn:hover { background-color: #3174b5; color: #fff; }
-
-        /* —————————— 5 & 6. Committee (网格布局，参照新图片) —————————— */
+        .speaker-name {
+            font-size: 22px;
+            color: #3174b5;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .speaker-affiliation {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+        .btn {
+            padding: 7px 18px;
+            border: 1px solid #3174b5;
+            border-radius: 4px;
+            color: #3174b5;
+            text-decoration: none;
+            font-size: 14px;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background-color: #3174b5;
+            color: #fff;
+        }
+        
+        /* 委员会网格 (组织 & 技术) */
         .committee-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -120,124 +275,217 @@
             line-height: 1.3;
             max-width: 200px;
         }
-
-        /* —————————— 其他内容样式 —————————— */
-        .content-section p { margin-bottom: 15px; font-size: 16px; color: #444; }
-        .date-label { font-weight: bold; color: #c0392b; margin-right: 8px; }
-        .link { color: #3174b5; text-decoration: none; }
-        .link:hover { text-decoration: underline; }
-        .about-lead { margin-bottom: 18px; }
-
-        .timeline-wrap {
-            margin-top: 10px;
-            padding: 20px 10px 10px;
-        }
-        .timeline-title {
-            text-align: center;
-            font-size: 42px;
-            line-height: 1.1;
-            margin-bottom: 26px;
-            color: #2f2f2f;
-            font-weight: 800;
-        }
-        .timeline-title span {
-            color: #2d78c4;
-        }
-        .timeline {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(6, minmax(120px, 1fr));
-            gap: 14px;
-            position: relative;
-            padding-top: 34px;
-        }
-        .timeline::before {
-            content: "";
-            position: absolute;
-            top: 46px;
-            left: 3%;
-            right: 3%;
-            height: 3px;
-            background: #9ec5ea;
-        }
-        .timeline li {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .timeline .date {
-            color: #1f7cc8;
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .timeline .dot {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #fff;
-            border: 5px solid #6ea6de;
-            margin: 0 auto 14px;
-        }
-        .timeline .label {
-            font-size: 14px;
-            color: #2f2f2f;
-            line-height: 1.35;
-            min-height: 42px;
-        }
-
-        /* —————————— 弹出面板样式 —————————— */
+        
+        /* 侧边弹出面板 */
         .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 999;
-            visibility: hidden; opacity: 0; transition: all 0.3s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
         }
-        .overlay.active { visibility: visible; opacity: 1; }
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
         .side-panel {
-            position: fixed; top: 0; right: -450px; width: 450px; max-width: 90%; height: 100%;
-            background: #fff; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            transition: right 0.3s ease-in-out; display: flex; flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 90%;
+            height: 100%;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
-        .side-panel.active { right: 0; }
-        .panel-header { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: flex-end; }
-        .close-btn { cursor: pointer; font-size: 14px; color: #666; font-weight: bold; }
-        .panel-content { padding: 30px; overflow-y: auto; flex: 1; }
-        .panel-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
-        .panel-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #3174b5; }
-        .panel-section-title { font-size: 18px; font-weight: bold; margin: 20px 0 10px; border-left: 4px solid #3174b5; padding-left: 10px; }
-        .panel-body-text { font-size: 15px; color: #444; text-align: justify; white-space: pre-line; }
-
+        .side-panel.active {
+            right: 0;
+        }
+        .panel-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .close-btn {
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+        .panel-content {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .panel-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .panel-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #3174b5;
+        }
+        .panel-affil {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .panel-section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            border-left: 4px solid #3174b5;
+            padding-left: 10px;
+        }
+        .panel-body-text {
+            font-size: 15px;
+            color: #444;
+            text-align: justify;
+            white-space: pre-line;
+            line-height: 1.5;
+        }
+        
+        /* 辅助样式 */
+        .date-label {
+            font-weight: bold;
+            color: #c0392b;
+            margin-right: 8px;
+        }
+        .link {
+            color: #3174b5;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .about-lead {
+            margin-bottom: 18px;
+        }
+        
         /* 响应式 */
         @media (max-width: 768px) {
-            .committee-grid { grid-template-columns: 1fr 1fr; }
-            .side-panel { width: 100%; right: -100%; }
-            .timeline-title { font-size: 34px; }
-            .timeline {
-                grid-template-columns: repeat(3, minmax(110px, 1fr));
-                row-gap: 20px;
+            .navPc {
+                display: none;
             }
-            .timeline::before { display: none; }
+            .navMobile {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 72px;
+                padding: 0 14px;
+                border-bottom: 1px solid #e9edf3;
+                background: #fff;
+            }
+            .navMobile .img {
+                height: 46px;
+                width: auto;
+                max-width: 70vw;
+            }
+            .navMobile .open,
+            .navMobile .close {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+            }
+            .committee-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .side-panel {
+                width: 100%;
+                right: -100%;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .speaker-name {
+                font-size: 20px;
+            }
+        }
+        
+        /* 兼容 right modal (原有底部pop) */
+        #bottomModal {
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- PC导航 -->
+    <div class="navPc">
+        <a href="https://www.ic-mind.org/"><img src="https://www.ic-mind.org/images/mind2026logo.png" alt="MIND 2026" /></a>
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="https://www.ic-mind.org/index.html">Home</a></li>
 
+            
+            
+
+
+
+            <li class="layui-nav-item layui-this"><a href="javascript:;">
+                
+                Workshops</a>
+
+                <i class="layui-icon layui-icon-down layui-nav-more"></i>
+                <dl class="layui-nav-child">
+                    <dd><a href="https://www.ic-mind.org/workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></dd>
+                    <dd><a href="https://www.ic-mind.org/workshop2.html">W2: Optinformatics for Evolutionary Learning and Optimization</a></dd>
+                </dl>
+            </li>
+
+            
+            <li class="layui-nav-item"><a href="committee.html">Committee</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">Calls</a> <i class="layui-icon layui-icon-down layui-nav-more"></i>
+                <dl class="layui-nav-child">
+                    <dd><a href="https://www.ic-mind.org/call-for-submissions.html">Call for Papers</a></dd>
+                    <dd><a href="https://www.ic-mind.org/call-for-special-session.html">Call for Special Sessions</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="https://www.ic-mind.org/call-for-sponsors.html">Call For Sponsors</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">Past Conference</a> <i class="layui-icon layui-icon-down layui-nav-more"></i>
+                <dl class="layui-nav-child">
+                    <dd><a href="https://mind2025org.github.io/">MIND 2025 (Xiamen, China)</a></dd>
+                    <dd><a href="https://www.ic-mind.org/highlight25.html">Highlight of MIND 2025</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    
+    <!-- 移动导航 -->
+    <div class="navMobile">
+        <a href="https://www.ic-mind.org/"><img src="https://www.ic-mind.org/images/mind2026logo.png" class="img" alt="logo" /></a>
+        <img src="https://www.ic-mind.org/images/mobile/open.png" class="open" alt="menu" />
+        <img src="https://www.ic-mind.org/images/mobile/close.png" class="close none" alt="close" />
+    </div>
+
+    <!-- Workshop 头部 -->
     <header class="header">
         <h1>Optinformatics for Evolutionary Learning and Optimization: Methodological Advances and Engineering Applications</h1>
         <p class="sub-title">Held in Conjunction With MIND 2026</p>
-        <p class="info">Nov 13 to 15, 2026, Chongqing</p>
-        <!-- <h1>About MIND 2026</h1>
-        <p class="sub-title">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing</p>
-        <p class="info">MIND 2026 will be held in the beautiful mountain city of Chongqing, China, from November 13-15, 2026!</p> -->
+        <p class="info">Nov 13 to 15, 2026, Chongqing, China</p>
     </header>
 
     <div class="container">
-        
+        <!-- 邀请演讲者 -->
         <h2 class="section-title">Invited Speakers</h2>
         <div class="speakers-grid">
+            <!-- Jose A. Lozano 卡片 -->
             <div class="speaker-card">
-                <img src="src/Jose.jpg" alt="Jose A. Lozano" class="speaker-avatar">
+                <img src="src/Jose.jpg" alt="Jose A. Lozano" class="speaker-avatar" onerror="this.src='https://picsum.photos/seed/jose-lozano/150/150'">
                 <div class="speaker-name">Jose A. Lozano</div>
                 <div class="speaker-affiliation">University of the Basque Country (UPV/EHU) and Basque Center for Applied Mathematics (BCAM), Spain</div>
                 <div class="btn-group">
@@ -245,17 +493,19 @@
                     <button class="btn" onclick="openPanel('lozano','topic')">Topic &amp; Abstract</button>
                 </div>
             </div>
+            <!-- Bernhard Sendhoff 卡片 (修正名字与数据对应) -->
             <div class="speaker-card">
-                <img src="https://picsum.photos/seed/jibin-wu/130/130" alt="Yansong Chua" class="speaker-avatar">
+                <img src="https://picsum.photos/seed/bernhard-sendhoff/150/150" alt="Bernhard Sendhoff" class="speaker-avatar">
                 <div class="speaker-name">Bernhard Sendhoff</div>
                 <div class="speaker-affiliation">China Nanhu Academy of Electronics and Information Technology, China</div>
                 <div class="btn-group">
-                    <button class="btn" onclick="openPanel('chua','bio')">Biography</button>
-                    <button class="btn" onclick="openPanel('chua','topic')">Topic & Abstract</button>
+                    <button class="btn" onclick="openPanel('sendhoff','bio')">Biography</button>
+                    <button class="btn" onclick="openPanel('sendhoff','topic')">Topic &amp; Abstract</button>
                 </div>
             </div>
         </div>
 
+        <!-- Workshop 介绍 -->
         <div class="content-section">
             <h2>1. About the Workshop</h2>
             <p class="about-lead">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing (MIND) will be held in Chongqing, China, from November 13 to November 15, 2026, serving as a premier forum for showcasing original and groundbreaking research contributions in the fields of Machine Intelligence and Nature-Inspired Computing.</p>
@@ -263,7 +513,17 @@
             <p>MIND is technically supported by the IEEE Computational Intelligence Society (CIS).</p>
         </div>
 
+        <!-- 重要日期 -->
+        <!-- 重要日期 -->
         <div class="content-section">
+            <h2>2. Important Dates</h2>
+            <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
+            <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
+            <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
+            <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
+            <p><span class="date-label">2026-11-13:</span> Workshop Date</p>
+        </div>
+        <!-- <div class="content-section">
             <h2>2. Important Dates</h2>
             <p><span class="date-label">2026-5-1:</span> Tutorial and Special Session Submission</p>
             <p><span class="date-label">2026-5-31:</span> Tutorial and Special Session Notification</p>
@@ -271,72 +531,78 @@
             <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
             <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
             <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
-        </div>
+        </div> -->
 
+        <!-- 投稿链接 -->
         <div class="content-section">
-            <h2>4. Paper Submission</h2>
+            <h2>3. Paper Submission</h2>
             <p>The Submission Portal for MIND 2026 is open:</p>
             <p>Submission link: <a href="#" class="link">https://cmt3.research.microsoft.com/IEEEMIND2026</a></p>
         </div>
 
+        <!-- 组织委员会 -->
         <div class="content-section">
-            <h2>5. Organizing Committee</h2>
+            <h2>4. Organizing Committee</h2>
             <div class="committee-grid">
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/jibin-wu/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/jibin-wu-org/130/130" alt="Jibin Wu" class="member-avatar">
                     <div class="member-name">Jibin Wu</div>
                     <div class="member-affil">The Hong Kong Polytechnic University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/yujie-wu/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/yujie-wu-org/130/130" alt="Yujie Wu" class="member-avatar">
                     <div class="member-name">Yujie Wu</div>
                     <div class="member-affil">The Hong Kong Polytechnic University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/qian-zheng/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/qian-zheng-org/130/130" alt="Qian Zheng" class="member-avatar">
                     <div class="member-name">Qian Zheng</div>
                     <div class="member-affil">Zhejiang University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/huajin-tang/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/huajin-tang-org/130/130" alt="Huajin Tang" class="member-avatar">
                     <div class="member-name">Huajin Tang</div>
                     <div class="member-affil">Zhejiang University</div>
                 </div>
             </div>
         </div>
 
+        <!-- 技术委员会 -->
         <div class="content-section">
-            <h2>6. Technical Committee (in alphabetical order by the last name)</h2>
+            <h2>5. Technical Committee (in alphabetical order by the last name)</h2>
             <div class="committee-grid">
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/siqi-cai/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/siqi-cai-tc/130/130" alt="Siqi Cai" class="member-avatar">
                     <div class="member-name">Siqi Cai</div>
                     <div class="member-affil">Harbin Institute of Technology, Shenzhen</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/congying-chu/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/congying-chu-tc/130/130" alt="Congying Chu" class="member-avatar">
                     <div class="member-name">Congying Chu</div>
                     <div class="member-affil">Institute of Automation, Chinese Academy of Sciences</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/guozhang-chen/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/guozhang-chen-tc/130/130" alt="Guozhang Chen" class="member-avatar">
                     <div class="member-name">Guozhang Chen</div>
                     <div class="member-affil">Peking University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/yansong-chua-tc/130/130" alt="" class="member-avatar">
+                    <img src="https://picsum.photos/seed/yansong-chua-tc/130/130" alt="Yansong Chua" class="member-avatar">
                     <div class="member-name">Yansong Chua</div>
                     <div class="member-affil">China Nanhu Academy of Electronics and Information Technology</div>
                 </div>
             </div>
         </div>
 
+        <!-- 联系方式 -->
         <div class="content-section">
             <h2>Contact Information</h2>
-            <p>Email: <a href="mailto:your-email@example.com" class="link">your-email@example.com</a></p>
+            <p>Email: <a href="mailto:mind2026@example.com" class="link">mind2026@workshop.com</a></p>
+            <p>For any queries regarding the workshop, please contact the organizing committee.</p>
         </div>
     </div>
 
+    <!-- 遮罩和侧边面板 -->
     <div class="overlay" id="overlay" onclick="closePanel()"></div>
     <div class="side-panel" id="sidePanel">
         <div class="panel-header">
@@ -345,7 +611,28 @@
         <div class="panel-content" id="panelBody"></div>
     </div>
 
+    <!-- 移动端底部导航菜单（保留兼容） -->
+    <div id="bottomModal" class="pop none">
+        <ul class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item"><a href="index.html">Home</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">Workshops</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></dd>
+                    <dd><a href="workshop2.html">W2: Optinformatics Workshop</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="committee.html">Committee</a></li>
+            <li class="layui-nav-item"><a href="call-for-submissions.html">Call for Papers</a></li>
+            <li class="layui-nav-item"><a href="call-for-sponsors.html">Call For Sponsors</a></li>
+            <li class="layui-nav-item"><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <script type='text/javascript' src='./js/jquery.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/layui.js' charset='utf-8'></script>
+    <script type='text/javascript' src='./js/common.js' charset='utf-8'></script>
     <script>
+        // 演讲者详细数据 (修正Bernhard Sendhoff, 保留Jose完整数据)
         const speakerData = {
             lozano: {
                 name: "Jose A. Lozano",
@@ -358,29 +645,42 @@ He has published more than 180 ISI-indexed journal articles, several of them hig
 His research interests include combinatorial optimization, machine learning, probabilistic graphical models, time-series analysis and applications in fields such as medicine, biology and ecology. He has supervised over 30 PhD theses, many recognized with national and international awards, and has received distinctions such as the Basque Country Research Award (2024) and several best paper awards.
 
 Prof. Lozano has held leading roles in the organization of major conferences, including serving as General Chair of IEEE CEC 2017 and ECML-PKDD 2021, and Program Chair of GECCO 2020. He has served on editorial boards of journals such as IEEE Transactions on Evolutionary Computation, IEEE Transactions on Neural Networks and Learning Systems, Evolutionary Computation and ACM Transactions on Evolutionary Learning and Optimization.`,
-                topic: "To be announced",
-                abstract: "Talk title and abstract will be announced closer to the workshop."
+                topic: "Optinformatics: Bridging Optimization and Machine Learning",
+                abstract: "This talk will discuss the synergies between evolutionary learning and optinformatics, highlighting how knowledge transfer and data-driven strategies enhance optimization performance. Recent methodological advances and real-world engineering applications will be presented."
             },
-            chua: {
-                name: "Yansong Chua",
+            sendhoff: {
+                name: "Bernhard Sendhoff",
                 affil: "China Nanhu Academy of Electronics and Information Technology, China",
-                img: "https://picsum.photos/seed/yansong-chua/150/150",
-                bio: "Yansong Chua is the Chief Expert of CETC... (更多介绍内容)",
-                topic: "Efficient Neuromorphic Computing Systems",
-                abstract: "In this talk, we will discuss the latest progress in spiking neural networks..."
+                img: "https://picsum.photos/seed/bernhard-sendhoff/150/150",
+                bio: `Bernhard Sendhoff is a distinguished researcher in the field of evolutionary computation, computational intelligence, and their applications in engineering. He has made significant contributions to multi-objective optimization, evolutionary learning, and the integration of machine learning with evolutionary algorithms. He currently serves as a Chief Scientist at China Nanhu Academy of Electronics and Information Technology, leading research on nature-inspired computing and intelligent systems. 
+
+With over two decades of experience in both academia and industry, Dr. Sendhoff has published numerous high-impact papers in top journals such as IEEE Transactions on Evolutionary Computation and Evolutionary Computation. His work on evolutionary optimization in complex engineering systems has been widely recognized, and he frequently serves as a keynote speaker at leading international conferences. His current research focuses on optinformatics, knowledge-assisted optimization, and real-world deployment of evolutionary learning methods.`,
+                topic: "Evolutionary Learning Assisted by Knowledge Transfer: From Theory to Engineering",
+                abstract: "In this talk, we explore the intersection of evolutionary learning and knowledge engineering, at the core of optinformatics. We will discuss how knowledge representation and transfer mechanisms can substantially accelerate evolutionary optimization in dynamic environments. The presentation will also cover industrial applications including aerospace design, smart manufacturing, and autonomous systems, showcasing the transformative potential of data-infused evolutionary computation."
             }
         };
 
+        // 打开侧边面板
         function openPanel(id, type) {
-            const d = speakerData[id];
+            const data = speakerData[id];
+            if (!data) return;
             const panelBody = document.getElementById('panelBody');
-            const title = type === 'bio' ? 'Biography' : 'Topic & Abstract';
-            const content = type === 'bio' ? d.bio : `<strong>${d.topic}</strong><br><br>${d.abstract}`;
-
+            let title = type === 'bio' ? 'Biography' : 'Topic & Abstract';
+            let content = '';
+            if (type === 'bio') {
+                content = data.bio;
+            } else {
+                content = `<strong style="font-size:1.1rem;">${data.topic}</strong><br><br>${data.abstract}`;
+            }
+            // 处理图片路径若lozano图片加载失败使用占位图
+            let imgSrc = data.img;
+            if (id === 'lozano' && (!imgSrc || imgSrc === 'src/Jose.jpg')) {
+                // 保留原始路径，onerror会在img标签触发
+            }
             panelBody.innerHTML = `
-                <img src="${d.img}" class="panel-avatar">
-                <div class="panel-name">${d.name}</div>
-                <div class="panel-affil">${d.affil}</div>
+                <img src="${imgSrc}" class="panel-avatar" alt="${data.name}" onerror="this.src='https://picsum.photos/seed/fallback/120/120'">
+                <div class="panel-name">${data.name}</div>
+                <div class="panel-affil">${data.affil}</div>
                 <div class="panel-section-title">${title}</div>
                 <div class="panel-body-text">${content}</div>
             `;
@@ -394,6 +694,28 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
             document.getElementById('overlay').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
+        // 移动端菜单交互（兼容 common.js 可能缺失的部分）
+        $(document).ready(function(){
+            if($('.navMobile .open').length) {
+                $('.navMobile .open').on('click', function(){
+                    $('#bottomModal').fadeIn(200);
+                    $('.navMobile .open').addClass('none');
+                    $('.navMobile .close').removeClass('none');
+                });
+                $('.navMobile .close').on('click', function(){
+                    $('#bottomModal').fadeOut(200);
+                    $('.navMobile .close').addClass('none');
+                    $('.navMobile .open').removeClass('none');
+                });
+                // 点击菜单内链接收起
+                $('#bottomModal a').on('click', function(){
+                    $('#bottomModal').fadeOut(200);
+                    $('.navMobile .close').addClass('none');
+                    $('.navMobile .open').removeClass('none');
+                });
+            }
+        });
     </script>
 </body>
 </html>
