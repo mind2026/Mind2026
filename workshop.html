@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", Tahoma, Arial, sans-serif;
         }
         body {
             background-color: #fff;
@@ -179,6 +179,22 @@
             padding-bottom: 8px;
             margin-bottom: 20px;
             margin-top: 50px;
+        }
+        .content-section p,
+        .content-section li {
+            font-size: 22px;
+            color: #333333;
+            line-height: 30px;
+        }
+        .content-section ul {
+            margin: 10px 0 0;
+            padding-left: 1.2em;
+        }
+        .important-dates-image {
+            display: block;
+            width: min(100%, 900px);
+            height: auto;
+            margin: 16px auto 0;
         }
         
         /* 演讲者卡片布局 */
@@ -499,7 +515,7 @@
 
     <div class="container">
         <!-- 邀请演讲者 -->
-        <h2 class="section-title">Invited Speakers</h2>
+        <h2 class="section-title">Invited Keynote Speakers</h2>
         <div class="speakers-grid">
             <!-- Jose A. Lozano 卡片 -->
             <div class="speaker-card">
@@ -513,7 +529,7 @@
             </div>
             <!-- Bernhard Sendhoff 卡片 (修正名字与数据对应) -->
             <div class="speaker-card">
-                <img src="https://picsum.photos/seed/bernhard-sendhoff/150/150" alt="Bernhard Sendhoff" class="speaker-avatar">
+                <img src="https://www.etit.tu-darmstadt.de/media/etit/04_personal/professoren_aktuell/Sendhoff_Bernhard_415x0.jpg" alt="Bernhard Sendhoff" class="speaker-avatar">
                 <div class="speaker-name">Bernhard Sendhoff</div>
                 <div class="speaker-affiliation">China Nanhu Academy of Electronics and Information Technology, China</div>
                 <div class="btn-group">
@@ -525,7 +541,7 @@
 
         <!-- Workshop 介绍 -->
         <div class="content-section">
-            <h2>1. About the Workshop</h2>
+            <h2>1. Aim and Scope</h2>
             <p class="about-lead">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing (MIND) will be held in Chongqing, China, from November 13 to November 15, 2026, serving as a premier forum for showcasing original and groundbreaking research contributions in the fields of Machine Intelligence and Nature-Inspired Computing.</p>
             <p>The conference aims to bring together researchers, practitioners, and industry experts to share their latest innovations, advancements, and real-world applications. MIND provides a vibrant platform for discussing emerging trends and exploring the transformative potential of machine intelligence combined with computational strategies inspired by nature. Through this convergence, the conference seeks to foster interdisciplinary collaboration and inspire future developments that push the boundaries of these exciting and rapidly evolving research areas.</p>
             <p>MIND is technically supported by the IEEE Computational Intelligence Society (CIS).</p>
@@ -535,12 +551,14 @@
         <!-- 重要日期 -->
         <div class="content-section">
             <h2>2. Important Dates</h2>
-            <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
+            <img src="https://www.ic-mind.org/images/Workshop/workshop1_deadlines.png" alt="Important Dates" class="important-dates-image" />
+            <!-- <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
             <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
             <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
             <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
-            <p><span class="date-label">2026-11-13:</span> Workshop Date</p>
+            <p><span class="date-label">2026-11-13:</span> Workshop Date</p> -->
         </div>
+        
         <!-- <div class="content-section">
             <h2>2. Important Dates</h2>
             <p><span class="date-label">2026-5-1:</span> Tutorial and Special Session Submission</p>
@@ -554,8 +572,15 @@
         <!-- 投稿链接 -->
         <div class="content-section">
             <h2>3. Paper Submission</h2>
-            <p>The Submission Portal for MIND 2026 is open:</p>
-            <p>Submission link: <a href="#" class="link">https://cmt3.research.microsoft.com/IEEEMIND2026</a></p>
+            <ul>
+                <li>Submission portal: <a href="https://cmt3.research.microsoft.com/IEEEMIND2026" class="link" target="_blank" rel="noopener noreferrer">https://cmt3.research.microsoft.com/IEEEMIND2026</a></li>
+                <li>Submission papers must be no longer than <strong>6 pages</strong> for long papers and <strong>2 pages</strong> for short papers, including all text, figures, and references. <strong>The accepted papers will be presented at the conference and included in the proceedings.</strong></li>
+                <li>We also welcome the submission of Abstracts (under 300 words) for published papers and ongoing works. <strong>The accepted Abstracts will be presented at the conference, but will not be included in the conference proceedings.</strong></li>
+                <li>Formatting guidelines and templates are available on: <a href="https://www.ieee.org/conferences/publishing/templates.html" class="link" target="_blank" rel="noopener noreferrer">https://www.ieee.org/conferences/publishing/templates.html</a></li>
+                <li>Supplementary material (e.g., appendices, data, source code, resubmission information) can optionally be submitted by the paper submission deadline.</li>
+                <li>Generative AI models, including ChatGPT, LLaMA, DeepSeek, or similar LLMs, do not satisfy the criteria for authorship of papers published in MIND 2026. If authors use LLMs in any part of the paper-writing process, they assume full responsibility for all content, including checking for plagiarism and correctness of the entire submission.</li>
+                <li>All submissions will be thoroughly reviewed by experts in the fields.</li>
+            </ul>
         </div>
 
         <!-- 组织委员会 -->
@@ -584,24 +609,32 @@
             <h2>5. Technical Committee (in alphabetical order by the last name)</h2>
             <div class="committee-grid">
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/siqi-cai-tc/130/130" alt="Siqi Cai" class="member-avatar">
-                    <div class="member-name">Siqi Cai</div>
-                    <div class="member-affil">Harbin Institute of Technology, Shenzhen</div>
+                    <a href="https://cs.cqu.edu.cn/info/1491/5633.htm" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cs.cqu.edu.cn/__local/D/58/6A/F7FA1E2A4CED88F3A5AB9F6B2A5_E7B3B77F_6427.jpg" alt="Liang Feng" class="member-avatar">
+                    </a>
+                    <div class="member-name">Liang Feng</div>
+                    <div class="member-affil">Chongqing University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/congying-chu-tc/130/130" alt="Congying Chu" class="member-avatar">
-                    <div class="member-name">Congying Chu</div>
-                    <div class="member-affil">Institute of Automation, Chinese Academy of Sciences</div>
+                    <a href="https://web.xidian.edu.cn/mggong/english.html" target="_blank" rel="noopener noreferrer">
+                        <img src="https://web.xidian.edu.cn/mggong/images/20130901_111927.JPG" alt="Maoguo Gong" class="member-avatar">
+                    </a>
+                    <div class="member-name">Maoguo Gong</div>
+                    <div class="member-affil">Xidian University</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/guozhang-chen-tc/130/130" alt="Guozhang Chen" class="member-avatar">
-                    <div class="member-name">Guozhang Chen</div>
-                    <div class="member-affil">Peking University</div>
+                    <a href="https://www.hou-yq.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.hou-yq.com/image/hou.png" alt="Yaqing Hou" class="member-avatar">
+                    </a>
+                    <div class="member-name">Yaqing Hou</div>
+                    <div class="member-affil">Dalian University of Technology</div>
                 </div>
                 <div class="member-item">
-                    <img src="https://picsum.photos/seed/yansong-chua-tc/130/130" alt="Yansong Chua" class="member-avatar">
-                    <div class="member-name">Yansong Chua</div>
-                    <div class="member-affil">China Nanhu Academy of Electronics and Information Technology</div>
+                    <a href="https://www.sustech.edu.cn/en/faculties/tangke.html" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.sustech.edu.cn/uploads/medium/2024/09/02162205_31525.jpg" alt="Ke Tang" class="member-avatar">
+                    </a>
+                    <div class="member-name">Ke Tang</div>
+                    <div class="member-affil">Southern University of Science and Technology</div>
                 </div>
             </div>
         </div>
