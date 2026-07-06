@@ -772,9 +772,6 @@
         </p>
     </footer>
 
-    <script type='text/javascript' src='./js/jquery.min.js' charset='utf-8'></script>
-    <script type='text/javascript' src='./js/layui.js' charset='utf-8'></script>
-    <script type='text/javascript' src='./js/common.js' charset='utf-8'></script>
     <script>
         // 演讲者详细数据 (修正Bernhard Sendhoff, 保留Jose完整数据)
         const speakerData = {
@@ -837,26 +834,40 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
             document.body.style.overflow = 'auto';
         }
 
-        // 移动端菜单交互（兼容 common.js 可能缺失的部分）
-        $(document).ready(function(){
-            if($('.navMobile .open').length) {
-                $('.navMobile .open').on('click', function(){
-                    $('#bottomModal').fadeIn(200);
-                    $('.navMobile .open').addClass('none');
-                    $('.navMobile .close').removeClass('none');
-                });
-                $('.navMobile .close').on('click', function(){
-                    $('#bottomModal').fadeOut(200);
-                    $('.navMobile .close').addClass('none');
-                    $('.navMobile .open').removeClass('none');
-                });
-                // 点击菜单内链接收起
-                $('#bottomModal a').on('click', function(){
-                    $('#bottomModal').fadeOut(200);
-                    $('.navMobile .close').addClass('none');
-                    $('.navMobile .open').removeClass('none');
-                });
+        // 移动端菜单交互：不依赖外部 js 目录中的脚本
+        document.addEventListener('DOMContentLoaded', function () {
+            const openBtn = document.querySelector('.navMobile .open');
+            const closeBtn = document.querySelector('.navMobile .close');
+            const bottomModal = document.getElementById('bottomModal');
+            const menuLinks = document.querySelectorAll('#bottomModal a');
+
+            if (!openBtn || !closeBtn || !bottomModal) {
+                return;
             }
+
+            function openMobileMenu() {
+                bottomModal.classList.remove('none', 'modalHide');
+                bottomModal.classList.add('show');
+                openBtn.classList.add('none');
+                closeBtn.classList.remove('none');
+            }
+
+            function closeMobileMenu() {
+                bottomModal.classList.remove('show');
+                bottomModal.classList.add('modalHide');
+                closeBtn.classList.add('none');
+                openBtn.classList.remove('none');
+                window.setTimeout(function () {
+                    bottomModal.classList.add('none');
+                    bottomModal.classList.remove('modalHide');
+                }, 300);
+            }
+
+            openBtn.addEventListener('click', openMobileMenu);
+            closeBtn.addEventListener('click', closeMobileMenu);
+            menuLinks.forEach(function (link) {
+                link.addEventListener('click', closeMobileMenu);
+            });
         });
     </script>
 </body>
