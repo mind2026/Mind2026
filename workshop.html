@@ -460,9 +460,58 @@
             }
         }
         
-        /* 兼容 right modal (原有底部pop) */
-        #bottomModal {
+        #mobileMenu {
             display: none;
+        }
+
+        @media (max-width: 768px) {
+            #mobileMenu {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #ffffff;
+                z-index: 1200;
+                overflow-y: auto;
+                padding: 12px 0 28px;
+                border-top: 1px solid #e9edf3;
+            }
+            #mobileMenu.active {
+                display: block;
+            }
+            .mobile-menu-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .mobile-menu-item {
+                border-bottom: 1px solid #e9edf3;
+            }
+            .mobile-menu-item > a,
+            .mobile-submenu a,
+            .mobile-menu-label {
+                display: block;
+                padding: 14px 18px;
+                color: #1f3f7d;
+                text-decoration: none;
+                font-size: 16px;
+                line-height: 1.4;
+            }
+            .mobile-menu-label {
+                font-weight: 700;
+                color: #17386c;
+            }
+            .mobile-submenu {
+                list-style: none;
+                margin: 0;
+                padding: 0 0 8px;
+                background: #f7faff;
+            }
+            .mobile-submenu a {
+                padding-left: 32px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -744,20 +793,40 @@
         <div class="panel-content" id="panelBody"></div>
     </div>
 
-    <!-- 移动端底部导航菜单（保留兼容） -->
-    <div id="bottomModal" class="pop none">
-        <ul class="layui-nav layui-nav-tree">
-            <li class="layui-nav-item"><a href="index.html">Home</a></li>
-            <li class="layui-nav-item"><a href="javascript:;">Workshops</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></dd>
-                    <dd><a href="workshop2.html">W2: Optinformatics Workshop</a></dd>
-                </dl>
+    <div id="mobileMenu" aria-hidden="true">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item"><a href="https://www.ic-mind.org/index.html">Home</a></li>
+            <li class="mobile-menu-item"><a href="https://www.ic-mind.org/committee.html">Committee</a></li>
+            <li class="mobile-menu-item">
+                <div class="mobile-menu-label">Workshops</div>
+                <ul class="mobile-submenu">
+                    <li><a href="https://www.ic-mind.org/workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></li>
+                    <li><a href="https://mind2026.github.io/Mind2026/workshop.html">W2: Optinformatics for Evolutionary Learning and Optimization</a></li>
+                </ul>
             </li>
-            <li class="layui-nav-item"><a href="committee.html">Committee</a></li>
-            <li class="layui-nav-item"><a href="call-for-submissions.html">Call for Papers</a></li>
-            <li class="layui-nav-item"><a href="call-for-sponsors.html">Call For Sponsors</a></li>
-            <li class="layui-nav-item"><a href="contact.html">Contact</a></li>
+            <li class="mobile-menu-item">
+                <div class="mobile-menu-label">Authors</div>
+                <ul class="mobile-submenu">
+                    <li><a href="https://www.ic-mind.org/call-for-submissions.html">Call for Main Track Papers</a></li>
+                    <li><a href="https://www.ic-mind.org/call-for-special-session.html">Call for Special Session Papers</a></li>
+                </ul>
+            </li>
+            <li class="mobile-menu-item">
+                <div class="mobile-menu-label">Programme</div>
+                <ul class="mobile-submenu">
+                    <li><a href="javascript:;">TBD</a></li>
+                </ul>
+            </li>
+            <li class="mobile-menu-item"><a href="https://www.ic-mind.org/call-for-sponsors.html">Sponsors</a></li>
+            <li class="mobile-menu-item"><a href="https://www.ic-mind.org/venue.html">Venue</a></li>
+            <li class="mobile-menu-item">
+                <div class="mobile-menu-label">Past Conference</div>
+                <ul class="mobile-submenu">
+                    <li><a href="https://mind2025org.github.io/">MIND 2025 (Xiamen, China)</a></li>
+                    <li><a href="https://www.ic-mind.org/highlight25.html">Highlight of MIND 2025</a></li>
+                </ul>
+            </li>
+            <li class="mobile-menu-item"><a href="https://www.ic-mind.org/contact.html">Contact</a></li>
         </ul>
     </div>
 
@@ -838,33 +907,27 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
         document.addEventListener('DOMContentLoaded', function () {
             const openBtn = document.querySelector('.navMobile .open');
             const closeBtn = document.querySelector('.navMobile .close');
-            const bottomModal = document.getElementById('bottomModal');
-            const menuLinks = document.querySelectorAll('#bottomModal a');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuLinks = document.querySelectorAll('#mobileMenu a');
 
-            if (!openBtn || !closeBtn || !bottomModal) {
+            if (!openBtn || !closeBtn || !mobileMenu) {
                 return;
             }
 
-            bottomModal.style.display = 'none';
-
             function openMobileMenu() {
-                bottomModal.style.display = 'block';
-                bottomModal.classList.remove('none', 'modalHide');
-                bottomModal.classList.add('show');
+                mobileMenu.classList.add('active');
+                mobileMenu.setAttribute('aria-hidden', 'false');
                 openBtn.classList.add('none');
                 closeBtn.classList.remove('none');
+                document.body.style.overflow = 'hidden';
             }
 
             function closeMobileMenu() {
-                bottomModal.classList.remove('show');
-                bottomModal.classList.add('modalHide');
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-hidden', 'true');
                 closeBtn.classList.add('none');
                 openBtn.classList.remove('none');
-                window.setTimeout(function () {
-                    bottomModal.style.display = 'none';
-                    bottomModal.classList.add('none');
-                    bottomModal.classList.remove('modalHide');
-                }, 300);
+                document.body.style.overflow = 'auto';
             }
 
             openBtn.addEventListener('click', openMobileMenu);
