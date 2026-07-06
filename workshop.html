@@ -490,7 +490,7 @@
             }
             .mobile-menu-item > a,
             .mobile-submenu a,
-            .mobile-menu-label {
+            .mobile-menu-toggle {
                 display: block;
                 padding: 14px 18px;
                 color: #1f3f7d;
@@ -498,15 +498,36 @@
                 font-size: 16px;
                 line-height: 1.4;
             }
-            .mobile-menu-label {
+            .mobile-menu-toggle {
+                width: 100%;
+                border: 0;
+                background: transparent;
+                text-align: left;
+                cursor: pointer;
                 font-weight: 700;
                 color: #17386c;
+                position: relative;
+            }
+            .mobile-menu-toggle::after {
+                content: '+';
+                position: absolute;
+                right: 18px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 18px;
+            }
+            .mobile-menu-item.expanded .mobile-menu-toggle::after {
+                content: '-';
             }
             .mobile-submenu {
+                display: none;
                 list-style: none;
                 margin: 0;
                 padding: 0 0 8px;
                 background: #f7faff;
+            }
+            .mobile-menu-item.expanded .mobile-submenu {
+                display: block;
             }
             .mobile-submenu a {
                 padding-left: 32px;
@@ -798,21 +819,21 @@
             <li class="mobile-menu-item"><a href="https://www.ic-mind.org/index.html">Home</a></li>
             <li class="mobile-menu-item"><a href="https://www.ic-mind.org/committee.html">Committee</a></li>
             <li class="mobile-menu-item">
-                <div class="mobile-menu-label">Workshops</div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false">Workshops</button>
                 <ul class="mobile-submenu">
                     <li><a href="https://www.ic-mind.org/workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></li>
                     <li><a href="https://mind2026.github.io/Mind2026/workshop.html">W2: Optinformatics for Evolutionary Learning and Optimization</a></li>
                 </ul>
             </li>
             <li class="mobile-menu-item">
-                <div class="mobile-menu-label">Authors</div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false">Authors</button>
                 <ul class="mobile-submenu">
                     <li><a href="https://www.ic-mind.org/call-for-submissions.html">Call for Main Track Papers</a></li>
                     <li><a href="https://www.ic-mind.org/call-for-special-session.html">Call for Special Session Papers</a></li>
                 </ul>
             </li>
             <li class="mobile-menu-item">
-                <div class="mobile-menu-label">Programme</div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false">Programme</button>
                 <ul class="mobile-submenu">
                     <li><a href="javascript:;">TBD</a></li>
                 </ul>
@@ -820,7 +841,7 @@
             <li class="mobile-menu-item"><a href="https://www.ic-mind.org/call-for-sponsors.html">Sponsors</a></li>
             <li class="mobile-menu-item"><a href="https://www.ic-mind.org/venue.html">Venue</a></li>
             <li class="mobile-menu-item">
-                <div class="mobile-menu-label">Past Conference</div>
+                <button class="mobile-menu-toggle" type="button" aria-expanded="false">Past Conference</button>
                 <ul class="mobile-submenu">
                     <li><a href="https://mind2025org.github.io/">MIND 2025 (Xiamen, China)</a></li>
                     <li><a href="https://www.ic-mind.org/highlight25.html">Highlight of MIND 2025</a></li>
@@ -909,6 +930,7 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
             const closeBtn = document.querySelector('.navMobile .close');
             const mobileMenu = document.getElementById('mobileMenu');
             const menuLinks = document.querySelectorAll('#mobileMenu a');
+            const menuToggles = document.querySelectorAll('.mobile-menu-toggle');
 
             if (!openBtn || !closeBtn || !mobileMenu) {
                 return;
@@ -932,6 +954,13 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
 
             openBtn.addEventListener('click', openMobileMenu);
             closeBtn.addEventListener('click', closeMobileMenu);
+            menuToggles.forEach(function (toggle) {
+                toggle.addEventListener('click', function () {
+                    const item = toggle.closest('.mobile-menu-item');
+                    const expanded = item.classList.toggle('expanded');
+                    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                });
+            });
             menuLinks.forEach(function (link) {
                 link.addEventListener('click', closeMobileMenu);
             });
