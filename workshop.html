@@ -845,7 +845,10 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
                 return;
             }
 
+            bottomModal.style.display = 'none';
+
             function openMobileMenu() {
+                bottomModal.style.display = 'block';
                 bottomModal.classList.remove('none', 'modalHide');
                 bottomModal.classList.add('show');
                 openBtn.classList.add('none');
@@ -858,6 +861,7 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
                 closeBtn.classList.add('none');
                 openBtn.classList.remove('none');
                 window.setTimeout(function () {
+                    bottomModal.style.display = 'none';
                     bottomModal.classList.add('none');
                     bottomModal.classList.remove('modalHide');
                 }, 300);
