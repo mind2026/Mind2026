@@ -85,6 +85,21 @@
             line-height: 1;
             white-space: nowrap;
         }
+        .navPc .layui-nav-item.has-submenu > a {
+            position: relative;
+            padding-right: 24px;
+        }
+        .navPc .layui-nav-item.has-submenu > a::after {
+            content: "";
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #204a97;
+            border-bottom: 2px solid #204a97;
+            transform: translateY(-65%) rotate(45deg);
+        }
         .navPc .layui-nav-item > a:hover,
         .navPc .layui-nav-item.layui-this > a {
             color: #295da8;
@@ -552,21 +567,21 @@
             <li class="layui-nav-item">
                 <a href="https://www.ic-mind.org/committee.html">Committee</a>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item has-submenu">
                 <a href="javascript:;">Workshops</a>
                 <dl class="layui-nav-child">
                     <dd><a href="https://www.ic-mind.org/workshop1.html">W1: Young Scholars Workshop on Neuromorphic Computing</a></dd>
                     <dd><a href="https://mind2026.github.io/Mind2026/workshop.html">W2: Optinformatics for Evolutionary Learning and Optimization</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item has-submenu">
                 <a href="javascript:;">Authors</a>
                 <dl class="layui-nav-child">
                     <dd><a href="https://www.ic-mind.org/call-for-submissions.html">Call for Main Track Papers</a></dd>
                     <dd><a href="https://www.ic-mind.org/call-for-special-session.html">Call for Special Session Papers</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item has-submenu">
                 <a href="javascript:;">Programme</a>
                 <dl class="layui-nav-child">
                     <dd><a href="https://www.ic-mind.org/keynote-speakers.html">Keynote Speakers</a></dd>
@@ -574,7 +589,7 @@
                     <dd><a href="">TBD</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item has-submenu">
                 <a href="javascript:;">Registration</a>
                 <dl class="layui-nav-child">
                     <dd><a href="">TBD</a></dd>
@@ -583,7 +598,7 @@
             <li class="layui-nav-item">
                 <a href="https://www.ic-mind.org/call-for-sponsors.html">Sponsors</a>
             </li>
-            <li class="layui-nav-item navOthers">
+            <li class="layui-nav-item navOthers has-submenu">
                 <a href="javascript:;">Others</a>
                 <dl class="layui-nav-child">
                     <dd><a href="https://www.ic-mind.org/venue.html">Venue</a></dd>
