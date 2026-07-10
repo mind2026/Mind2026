@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="./css/common.css" />
     <link rel="stylesheet" type="text/css" href="./css/workshop.css" />
     <link rel="stylesheet" type="text/css" href="./css/committee.css" />
+    <link rel="stylesheet" type="text/css" href="./css/workshop-page.css" />
 
     <!-- 内嵌修复样式 (保证所有布局完整) -->
     <style>
@@ -556,7 +557,7 @@
         }
     </style>
 </head>
-<body>
+<body class="workshopPage">
     <!-- PC导航 -->
     <div class="navPc">
         <a href="https://www.ic-mind.org/"><img src="https://www.ic-mind.org/images/mind2026logo.png" alt="MIND 2026" /></a>
@@ -655,28 +656,58 @@
             </div>
         </div>
 
-        <!-- Workshop 介绍 -->
-        <div class="content-section">
-            <h2>1. Aim and Scope</h2>
-            <!-- <p class="about-lead">The 2026 International Conference on Machine Intelligence and Nature-InspireD Computing (MIND) will be held in Chongqing, China, from November 13 to November 15, 2026, serving as a premier forum for showcasing original and groundbreaking research contributions in the fields of Machine Intelligence and Nature-Inspired Computing.</p> -->
-            <p>This workshop aims to bring together researchers, practitioners, and industry experts to explore recent advances in optinformatics for evolutionary learning and optimization, an emerging paradigm that integrates data-driven knowledge extraction with evolutionary search processes. While evolutionary algorithms have demonstrated strong global optimization capabilities across diverse domains, they traditionally operate in a problem-independent manner, often neglecting valuable knowledge accumulated from previously solved tasks. Optinformatics addresses this limitation by incorporating techniques from data mining, machine learning, and information processing into the optimization pipeline, enabling more efficient, knowledge-aware, and adaptive search.  </p>
-            <p>The workshop will cover methodological innovations in evolutionary learning, including inter-problem knowledge transfer, data-driven feature engineering, and evolutionary reinforcement learning, as well as their applications in real-world scenarios such as vehicle routing, automated machine learning, and complex system optimization. By bridging optimization theory, data-centric learning, and engineering practice, this workshop aims to provide a platform for exchanging novel ideas, fostering interdisciplinary collaboration, and advancing the development of next-generation intelligent optimization frameworks.</p>
-        </div>
+        <div class="wContent">
+            <div class="wWrap1">
+                <div class="wTitle" style="color: #2B79CF;">Aim and Scope</div>
+                <div>This workshop aims to bring together researchers, practitioners, and industry experts to explore recent advances in optinformatics for evolutionary learning and optimization, an emerging paradigm that integrates data-driven knowledge extraction with evolutionary search processes. While evolutionary algorithms have demonstrated strong global optimization capabilities across diverse domains, they traditionally operate in a problem-independent manner, often neglecting valuable knowledge accumulated from previously solved tasks. Optinformatics addresses this limitation by incorporating techniques from data mining, machine learning, and information processing into the optimization pipeline, enabling more efficient, knowledge-aware, and adaptive search.</div>
+                <div style="margin-top: 18px;">The workshop will cover methodological innovations in evolutionary learning, including inter-problem knowledge transfer, data-driven feature engineering, and evolutionary reinforcement learning, as well as their applications in real-world scenarios such as vehicle routing, automated machine learning, and complex system optimization. By bridging optimization theory, data-centric learning, and engineering practice, this workshop aims to provide a platform for exchanging novel ideas, fostering interdisciplinary collaboration, and advancing the development of next-generation intelligent optimization frameworks.</div>
+            </div>
 
-        <!-- 重要日期 -->
-        <!-- 重要日期 -->
-        <div class="content-section">
-            <h2>2. Important Dates</h2>
-            <img src="./src/timeline.jpg" alt="Important Dates" class="important-dates-image" />
-            <!-- <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
-            <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
-            <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
-            <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
-            <p><span class="date-label">2026-11-13:</span> Workshop Date</p> -->
-        </div>
+            <div class="wWrap2">
+                <div class="wTitle" style="color: #2B79CF;">Workshop Topics</div>
+                <div class="wWrap2T3">We invite contributions that present novel insights, methodologies, and applications in optinformatics for evolutionary learning and optimization. Submissions should advance the integration of data-driven knowledge discovery with evolutionary search, enabling more effective, adaptive, and scalable optimization frameworks. Topics of interest include, but are not limited to, the following themes:</div>
+                <ul class="wWrap2Ul">
+                    <li>
+                        <div class="wWrap2T1">Inter-Problem Knowledge Transfer</div>
+                        <div class="wWrap2T2">Transfer learning, multitask optimization, warm-start strategies, and experience reuse across related optimization problems.</div>
+                    </li>
+                    <li>
+                        <div class="wWrap2T1">Data-Driven Feature Engineering</div>
+                        <div class="wWrap2T2">Landscape analysis, representation learning, surrogate-assisted search, and feature extraction for optimization and evolutionary learning.</div>
+                    </li>
+                    <li>
+                        <div class="wWrap2T1">Evolutionary Reinforcement Learning</div>
+                        <div class="wWrap2T2">Hybrid reinforcement learning and evolutionary computation methods for policy search, decision-making, and adaptive control.</div>
+                    </li>
+                    <li>
+                        <div class="wWrap2T1">Optinformatics for AutoML</div>
+                        <div class="wWrap2T2">Neural architecture search, hyperparameter optimization, pipeline configuration, and automated model selection with knowledge-enhanced search.</div>
+                    </li>
+                    <li>
+                        <div class="wWrap2T1">Combinatorial and Large-Scale Optimization</div>
+                        <div class="wWrap2T2">Knowledge-guided optimization for routing, scheduling, allocation, and other complex combinatorial or high-dimensional problems.</div>
+                    </li>
+                    <li>
+                        <div class="wWrap2T1">Real-World Applications and Benchmarking</div>
+                        <div class="wWrap2T2">Industrial case studies, benchmark design, performance analysis, and deployment of optinformatics methods in engineering and intelligent systems.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 重要日期 -->
+            <!-- 重要日期 -->
+            <div class="content-section">
+                <h2>3. Important Dates</h2>
+                <img src="./src/timeline.jpg" alt="Important Dates" class="important-dates-image" />
+                <!-- <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
+                <p><span class="date-label">2026-8-15:</span> Paper Notification</p>
+                <p><span class="date-label">2026-9-15:</span> Camera-Ready</p>
+                <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
+                <p><span class="date-label">2026-11-13:</span> Workshop Date</p> -->
+            </div>
         
         <!-- <div class="content-section">
-            <h2>2. Important Dates</h2>
+            <h2>3. Important Dates</h2>
             <p><span class="date-label">2026-5-1:</span> Tutorial and Special Session Submission</p>
             <p><span class="date-label">2026-5-31:</span> Tutorial and Special Session Notification</p>
             <p><span class="date-label">2026-7-15:</span> Paper Submission</p>
@@ -685,24 +716,68 @@
             <p><span class="date-label">2026-9-30:</span> Early Registration Deadline</p>
         </div> -->
 
-        <!-- 投稿链接 -->
-        <div class="content-section">
-            <h2>3. Paper Submission</h2>
-            <ul>
-                <li> • Submission portal: <a href="https://cmt3.research.microsoft.com/IEEEMIND2026" class="link" target="_blank" rel="noopener noreferrer">https://cmt3.research.microsoft.com/IEEEMIND2026</a></li>
-                <li> • Submission papers must be no longer than <strong>6 pages</strong> for long papers and <strong>2 pages</strong> for short papers, including all text, figures, and references. <strong>The accepted papers will be presented at the conference and included in the proceedings.</strong></li>
-                <li> • We also welcome the submission of Abstracts (under 300 words) for published papers and ongoing works. <strong>The accepted Abstracts will be presented at the conference, but will not be included in the conference proceedings.</strong></li>
-                <li> • Formatting guidelines and templates are available on: </li>
-                <li> <a href="https://www.ieee.org/conferences/publishing/templates.html" class="link" target="_blank" rel="noopener noreferrer">https://www.ieee.org/conferences/publishing/templates.html</a></li>
-                <li> • Supplementary material (e.g., appendices, data, source code, resubmission information) can optionally be submitted by the paper submission deadline.</li>
-                <li> • Generative AI models, including ChatGPT, LLaMA, DeepSeek, or similar LLMs, do not satisfy the criteria for authorship of papers published in MIND 2026. If authors use LLMs in any part of the paper-writing process, they assume full responsibility for all content, including checking for plagiarism and correctness of the entire submission.</li>
-                <li> • All submissions will be thoroughly reviewed by experts in the fields.</li>
-            </ul>
+            <!-- 投稿链接 -->
+            <div class="wWrap4">
+                <div class="wTitle" style="color: #2B79CF;">Paper Submission</div>
+                <div class="wWrap4T1">
+                    <div class="workshopSubmissionPortal">
+                        <div>
+                            <span>Submission Portal</span>
+                            <strong>Microsoft CMT for IEEE MIND 2026</strong>
+                        </div>
+                        <a href="https://cmt3.research.microsoft.com/IEEEMIND2026" target="_blank" rel="noopener noreferrer">Submit Paper</a>
+                    </div>
+
+                    <div class="workshopPaperTypeGrid">
+                        <div class="workshopPaperTypeCard">
+                            <span>LONG</span>
+                            <strong>Up to 6 pages</strong>
+                            <p>Submission papers must be no longer than <span class="blod">6 pages</span> for long papers, including all text, figures, and references.</p>
+                        </div>
+                        <div class="workshopPaperTypeCard">
+                            <span>SHORT</span>
+                            <strong>Up to 2 pages</strong>
+                            <p>Submission papers must be no longer than <span class="blod">2 pages</span> for short papers, including all text, figures, and references.</p>
+                        </div>
+                        <div class="workshopPaperTypeCard">
+                            <span>ABSTRACT</span>
+                            <strong>Under 300 words</strong>
+                            <p>We also welcome the submission of Abstracts (under 300 words) for published papers and ongoing works.</p>
+                        </div>
+                    </div>
+
+                    <div class="workshopGuidancePanel">
+                        <h3>Presentation and Proceedings</h3>
+                        <p>The accepted long and short papers will be presented at the conference and included in the proceedings. The accepted Abstracts will be presented at the conference, but will not be included in the conference proceedings.</p>
+                    </div>
+
+                    <div class="workshopGuidanceTwoColumn">
+                        <div class="workshopGuidancePanel">
+                            <h3>Formatting Guidelines</h3>
+                            <p>Formatting guidelines and templates are available on: <a href="https://www.ieee.org/conferences/publishing/templates.html" class="link" target="_blank" rel="noopener noreferrer">https://www.ieee.org/conferences/publishing/templates.html</a></p>
+                        </div>
+                        <div class="workshopGuidancePanel">
+                            <h3>Supplementary Material</h3>
+                            <p>Supplementary material (e.g., appendices, data, source code, resubmission information) can optionally be submitted by the paper submission deadline.</p>
+                        </div>
+                    </div>
+
+                    <div class="workshopGuidancePanel workshopPolicyPanel">
+                        <h3>Generative AI Policy</h3>
+                        <p>Generative AI models, including ChatGPT, LLaMA, DeepSeek, or similar LLMs, do not satisfy the criteria for authorship of papers published in MIND 2026. If authors use LLMs in any part of the paper-writing process, they assume full responsibility for all content, including checking for plagiarism and correctness of the entire submission.</p>
+                    </div>
+
+                    <div class="workshopGuidancePanel">
+                        <h3>Review Process</h3>
+                        <p>All submissions will be thoroughly reviewed by experts in the fields.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 组织委员会 -->
         <div class="content-section">
-            <h2>4. General Co-chairs</h2>
+            <h2>5. General Co-chairs</h2>
             <div class="committee-grid">
                 <div class="member-item">
                     <a href="https://personal.ntu.edu.sg/asysong/home.html" target="_blank" rel="noopener noreferrer">
@@ -722,7 +797,7 @@
         </div>
         <!-- 技术委员会 -->
         <div class="content-section">
-            <h2>5. Organizing Committee (in alphabetical order by the last name)</h2>
+            <h2>6. Organizing Committee (in alphabetical order by the last name)</h2>
             <div class="committee-grid">
                 <div class="member-item">
                     <a href="http://staff.ustc.edu.cn/~hchen/" target="_blank" rel="noopener noreferrer">
