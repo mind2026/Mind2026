@@ -248,7 +248,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             padding: 40px 25px;
-            flex: 0 1 350px;
+            flex: 0 1 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -604,7 +604,7 @@
             <li class="layui-nav-item has-submenu">
                 <a href="javascript:;">Registration</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="https://www.ic-mind.org/registration.html">TBD</a></dd>
+                    <dd><a href="">TBD</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
@@ -663,6 +663,16 @@
                 <div class="btn-group">
                     <button class="btn" onclick="openPanel('sendhoff','bio')">Biography</button>
                     <button class="btn" onclick="openPanel('sendhoff','topic')">Topic &amp; Abstract</button>
+                </div>
+            </div>
+            <!-- Xiangjian He 卡片 -->
+            <div class="speaker-card">
+                <img src="./src/XiangjianHe.jpg" alt="Xiangjian He" class="speaker-avatar" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Xiangjian+He&amp;size=150&amp;background=eaf2fb&amp;color=3174b5&amp;bold=true'">
+                <div class="speaker-name">Xiangjian He</div>
+                <div class="speaker-affiliation">University of Nottingham Ningbo China</div>
+                <div class="btn-group">
+                    <button class="btn" onclick="openPanel('he','bio')">Biography</button>
+                    <button class="btn" onclick="openPanel('he','topic')">Topic &amp; Abstract</button>
                 </div>
             </div>
         </div>
@@ -1029,6 +1039,22 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
                 bio: `Professor Sendhoff is currently Operating Officer at Honda R&D Co., Ltd., Chief Executive Officer of the Global Network Honda Research Institutes and Managing Director of the Honda Research Institute Europe GmbH. He is Honorary Professor at the Technical University of Darmstadt, Germany. Bernhard Sendhoff is a Fellow of the IEEE, a Senior Member of the ACM, and a Member of the SAE. He has authored or co-authored more than 200 peer reviewed journal and conference papers and over 40 patents and has a Google Scholar h-index of 54.`,
                 topic: "",
                 abstract: ""
+            },
+            he: {
+                name: "Xiangjian He",
+                affil: "University of Nottingham Ningbo China",
+                img: "./src/XiangjianHe.jpg",
+                bio: `Xiangjian He, an Australian citizen with a PhD in Computer Science, is Chair Professor of Computer Science and Technology, Discipline Leader, and Director of the Computer Vision and Intelligent Perception Laboratory at the University of Nottingham Ningbo China. He received his PhD in Computer Science from the University of Technology Sydney, Australia, in 1999. He has been selected for a national high-level talent program and as a Zhejiang Provincial Key Talent, and has been named in Stanford University's list of the World's Top 2% Scientists for consecutive years.
+
+Professor He has long worked on computer vision, machine learning, medical image analysis, and intelligent perception. He has published more than 500 papers in leading international journals such as IEEE TPAMI and ACM Computing Surveys and at major conferences including CVPR, ICCV, and AAAI, with over 16,000 citations on Google Scholar. Before returning to China, he led or participated in 36 research and industrialization projects with total funding equivalent to more than RMB 20 million, including over RMB 10 million from industry collaborations.
+
+Since joining the University of Nottingham Ningbo China full-time in 2022, Professor He has led the development of Computer Science and Technology as a Ningbo Excellent Distinctive Discipline (Category A), established the Computer Vision and Intelligent Perception (CVIP) research team, and advanced the building of an international research platform and talent development system. Focusing on healthcare, urban safety, and the digital economy, he has led research projects such as intelligent detection in breast cancer pathology images, conducted pathology image analysis and computer-aided diagnosis research with medical institutions, and worked with local companies on the development and commercialization of technologies including intelligent video processing and intelligent inspection of rail transit bridges. In recent years, the team has also published important findings in Nature Portfolio journals such as npj Digital Medicine and Scientific Data.
+
+In 2026, a student team led by Professor He won first place worldwide in the Surgical Action Triplet Recognition challenge at the 29th International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI 2026), the first time a Chinese university has won this challenge. The result demonstrates the team's research strength in medical artificial intelligence and surgical video understanding.
+
+In addition, Professor He has organized international conferences in Ningbo, including VSIP 2024 and CVIDL 2025, which attracted nearly 500 attendances from experts and scholars in China and abroad. He has supervised 37 PhD graduates and 4 postdoctoral researchers, and continues to promote international academic collaboration, high-level talent development, and the industrial application of artificial intelligence technologies.`,
+                topic: "Towards Generalizable, Lightweight, and Trustworthy Medical Artificial Intelligence",
+                abstract: `Medical imaging is the cornerstone of disease screening, diagnosis, and prognostic assessment, and artificial intelligence, represented by vision foundation models, is profoundly reshaping clinical workflows. However, translating medical AI into real-world clinical practice still faces three major challenges. First, high-quality annotated data are scarce, and the imaging process itself can impose an additional radiation burden. Second, large models incur high computational costs and generalize poorly across modalities and clinical centers. Third, the trustworthiness and interpretability of diagnostic results remain to be improved. This talk is organized around three stages: data, analysis, and diagnosis. At the data level, we build the first public ultrasound segmentation dataset for cesarean scar defects, and propose a CT-free PET attenuation and scatter correction method based on few-shot cross-domain adaptation, which adapts to new clinical settings with only a handful of samples. At the analysis level, we combine parameter-efficient fine-tuning, knowledge distillation, frequency-guided multi-task routing, and frozen foundation model adaptation to achieve lightweight and generalizable medical image analysis. At the diagnosis level, we leverage multi-agent collaborative verification and hyperbolic multimodal learning to improve the accuracy and trustworthiness of pathological diagnosis and survival prediction.`
             }
         };
 
@@ -1049,8 +1075,11 @@ Prof. Lozano has held leading roles in the organization of major conferences, in
             if (id === 'lozano' && (!imgSrc || imgSrc === 'src/Jose.jpg')) {
                 // 保留原始路径，onerror会在img标签触发
             }
+            const fallbackImg = id === 'he'
+                ? 'https://ui-avatars.com/api/?name=Xiangjian+He&size=120&background=eaf2fb&color=3174b5&bold=true'
+                : 'https://picsum.photos/seed/fallback/120/120';
             panelBody.innerHTML = `
-                <img src="${imgSrc}" class="panel-avatar" alt="${data.name}" onerror="this.src='https://picsum.photos/seed/fallback/120/120'">
+                <img src="${imgSrc}" class="panel-avatar" alt="${data.name}" onerror="this.onerror=null;this.src='${fallbackImg}'">
                 <div class="panel-name">${data.name}</div>
                 <div class="panel-affil">${data.affil}</div>
                 <div class="panel-section-title">${title}</div>
